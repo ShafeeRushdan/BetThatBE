@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         @events = Event.all
         render json: @events
@@ -10,7 +12,7 @@ class EventsController < ApplicationController
     end
 
     def create 
-        @event = Event.create(name: params[:name], logo: params[:logo])
+        @event = Event.create(name: params[:name])
        
        
         render json: @event
